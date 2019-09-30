@@ -8,6 +8,16 @@
   <title>NodeJS Chat</title>
 </head>
 <body>
-  <h1>Hello world!</h1>
+<h1>Hello world!</h1>
+
+<script src="socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+
+  socket.on('connect', () => {
+    console.log('Client connected');
+  });
+
+</script>
 </body>
 </html>
