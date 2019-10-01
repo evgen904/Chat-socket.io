@@ -8,11 +8,28 @@
   <title>NodeJS Chat</title>
 </head>
 <body>
-<h1>Hello world!</h1>
+
+<input type="text">
+<button>Send Message</button>
+<ul></ul>
 
 <script src="socket.io/socket.io.js"></script>
 <script>
   const socket = io();
+
+  document.querySelector('button').addEventListener('click', () => {
+    const value = document.querySelector('input').value;
+    socket.emit('createMessage', {
+      value
+    });
+    document.querySelector('input').value = '';
+  });
+
+  socket.on('newMassage', message => {
+    const li = document.createElement('li');
+    li.innerHTML = `<b>${message.text}</b> <small>${message.date}</small>`;
+    document.querySelector('ul').appendChild(li);
+  });
 
   socket.on('connect', () => {
     console.log('Client connected');
