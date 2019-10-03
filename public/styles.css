@@ -13,3 +13,42 @@ html, body {
   max-width: 400px;
   width: 100%;
 }
+
+.chat {
+  display: flex;
+  height: 70vh;
+  width: 100%;
+}
+.chat-user {
+  width: 300px;
+  border: 1px solid #e0e0e0;
+  margin: 0;
+}
+.actions {
+  height: 30vh;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+}
+.chat-message {
+  overflow-y: auto;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+}
+.message {
+  display: flex;
+}
+.message-content {
+  border-radius: 3px;
+  padding: 6px 9px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  max-width: 250px;
+}
+.message.owner {
+  justify-content: flex-end;
+}
+.message.owner .message-content {
+  color: #ffffff;
+  background-color: #26a69a;
+}
