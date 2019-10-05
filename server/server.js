@@ -10,17 +10,24 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
+const message = (name, text) => ({name, text});
+
 app.use(express.static(publicPath));
 
 io.on('connection', socket => {
-  console.log('IO Connection');
+  socket.on('message:create', (data, callback) => {
+    if (!data) {
+      callback(`Message can't br empty`);
+    } else {
+      callback();
+      io.emit('message:new', message('Admin', data.text));
+    }
 
-  socket.on('createMessage', (data) => {
-    console.log('Socket:createMessage ', data);
-    socket.emit('newMassage', {
-      text: data.value,
-      date: new Date()
-    });
+    // console.log('Socket:createMessage ', data);
+    // socket.emit('newMassage', {
+    //   text: data.value,
+    //   date: new Date()
+    // });
   });
 
 });

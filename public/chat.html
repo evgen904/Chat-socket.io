@@ -22,23 +22,29 @@
         User {{ u }}
       </a>
     </div>
-    <div class="chat-message">
-      <div
-          class="message"
-          v-for="m in 10"
-          :class="{'owner': m === 3}"
-      >
-        <div class="message-content z-depth-1">
-          Message {{ m }}
-        </div>
-      </div>
+    <div class="chat-messages">
+      <chat-message
+          v-for="m in messages"
+          :message="m"
+      ></chat-message>
     </div>
   </div>
   <div class="actions">
     <div class="input-field">
-      <input type="text" placeholder="Type yuo message...">
+      <input
+          type="text"
+          placeholder="Type yuo message..."
+          v-model="message"
+          autofocus
+          autocomplete="false"
+          @keydown.enter="sendMessage"
+      >
     </div>
-    <button class="btn">Send</button>
+    <button
+        class="btn"
+        @click="sendMessage"
+        :disabled="message.length === 0"
+    >Send</button>
   </div>
 </div>
 
