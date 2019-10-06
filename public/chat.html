@@ -24,8 +24,10 @@
     </div>
     <div class="chat-messages">
       <chat-message
-          v-for="m in messages"
+          v-for="(m, index) in messages"
           :message="m"
+          :user="user"
+          :key="index"
       ></chat-message>
     </div>
   </div>
