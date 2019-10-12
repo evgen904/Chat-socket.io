@@ -22,7 +22,7 @@
         {{ u.name }}
       </a>
     </div>
-    <div class="chat-messages">
+    <div class="chat-messages" ref="message">
       <chat-message
           v-for="(m, index) in messages"
           :message="m"

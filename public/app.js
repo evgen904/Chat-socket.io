@@ -48,7 +48,11 @@ new Vue({
 
       socket.on('message:new', message => {
         this.messages.push(message);
+
+        scrollToButton(this.$refs.message);
       })
+
+      scrollToButton(this.$refs.message);
     }
   },
   created() {
@@ -71,3 +75,9 @@ new Vue({
     });
   }
 });
+
+function scrollToButton(node) {
+  setTimeout(() => {
+    node.scrollTop = node.scrollHeight;
+  })
+}
