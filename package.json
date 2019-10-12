@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "nodejs-chat",
   "main": "server.js",
+  "engines": {
+    "node": "11.10.1"
+  },
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js"
