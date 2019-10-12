@@ -16,10 +16,10 @@
     <div class="chat-user collection">
       <a
           class="collection-item"
-          v-for="u in 3"
-          :class="{'active': u === 1}"
+          v-for="u in users"
+          :class="{'active': u.id === user.id}"
       >
-        User {{ u }}
+        {{ u.name }}
       </a>
     </div>
     <div class="chat-messages">

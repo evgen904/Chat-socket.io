@@ -16,6 +16,7 @@ new Vue({
   data: {
     message: '',
     messages: [],
+    users: [],
     user: {
       name: '',
       room: ''
@@ -38,6 +39,13 @@ new Vue({
       });
     },
     initializeConnection() {
+
+      // прослушка, получение список всех пользователей
+      socket.on('users:update', users => {
+        // переопределяем массив, чтобы не было мутаций
+        this.users = [...users];
+      });
+
       socket.on('message:new', message => {
         this.messages.push(message);
       })

@@ -35,6 +35,9 @@ io.on('connection', socket => {
     // добавление пользователя
     users.add(socket.id, user.name, user.room);
 
+    // отправка на фронтент список пользователей
+    io.to(user.room).emit('users:update', users.getByRoom(user.room));
+
     // отправляет сообщение только текущему пользователю (текущему соединению)
     socket.emit('message:new', message('Admin', `Welcom, ${user.name}!`));
 
@@ -65,6 +68,9 @@ io.on('connection', socket => {
     // если user вернуло что-то
     if (user) {
       io.to(user.room).emit('message:new', message('Admin', `${user.name}, left.`))
+
+      // обновляем список пользователей если пользователь вышел
+      io.to(user.room).emit('users:update', users.getByRoom(user.room));
     }
   });
 
